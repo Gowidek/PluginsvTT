@@ -1,0 +1,7 @@
+name: dCase
+version: 1.0
+author: dawidos506
+main: dawidos506.dcase.Main
+
+commands:
+  premium:
