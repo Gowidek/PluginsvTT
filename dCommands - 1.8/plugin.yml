@@ -6,3 +6,4 @@ main: dawidos506.dcmds.Main
 commands:
   bc:
     aliases: [broadcast]
+  helpop:

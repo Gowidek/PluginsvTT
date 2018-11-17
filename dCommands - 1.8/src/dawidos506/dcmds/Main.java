@@ -22,6 +22,7 @@ public class Main extends JavaPlugin {
 
 	private void registerCommands() {
 		getCommand("bc").setExecutor(new BroadcastCommand());
+		getCommand("helpop").setExecutor(new HelpopCommand());
 	}
 	private void registerEvents() {
 		PluginManager pm = getServer().getPluginManager();
