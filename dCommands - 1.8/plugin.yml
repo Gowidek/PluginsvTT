@@ -1,0 +1,8 @@
+name: dCommands
+version: 1.0
+author: dawidos506
+main: dawidos506.dcmds.Main
+
+commands:
+  bc:
+    aliases: [broadcast]
