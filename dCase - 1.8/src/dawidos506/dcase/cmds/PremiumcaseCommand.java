@@ -11,8 +11,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
+import dawidos506.dcase.IS;
 import dawidos506.dcase.Main;
 
 public class PremiumcaseCommand implements CommandExecutor, Listener {
@@ -33,32 +33,27 @@ public class PremiumcaseCommand implements CommandExecutor, Listener {
 	}
 	
 	private void setitems() {
-		ItemStack item1 = new ItemStack(Material.STONE);{
-			ItemMeta im = item1.getItemMeta();
-			im.setDisplayName("§4Item1");
-			item1.setItemMeta(im);
-		}
-		ItemStack item2 = new ItemStack(Material.GRASS);{
-			ItemMeta im = item2.getItemMeta();
-			im.setDisplayName("§4Item2");
-			item2.setItemMeta(im);
-		}
-		ItemStack item3 = new ItemStack(Material.APPLE);{
-			ItemMeta im = item3.getItemMeta();
-			im.setDisplayName("§4Item3");
-			item3.setItemMeta(im);
-		}
+		ItemStack item1 = IS.createItemStack(Material.STONE, 64, "§aKamien", IS.createLore("§bNa drop kamienia masz 20%"));
+		ItemStack item2 = IS.createItemStack(Material.GRASS, 64, "§aTrawa", IS.createLore("§bNa drop trawy masz 40%"));
+		ItemStack item3 = IS.createItemStack(Material.DIRT, 64, "§aZiemia", IS.createLore("§bNa drop ziemi masz 40%"));
+		ItemStack give = IS.createItemStack(Material.CHEST, 1, "§aCase", IS.createLore("§bKliknij, aby wziac §a§lPremium Case"));
 		pr.setItem(3, item1);
 		pr.setItem(4, item2);
 		pr.setItem(5, item3);
+		pr.setItem(31, give);
 	}
 	
 	@EventHandler
-	public void inv(InventoryClickEvent e) {
-		Player p = (Player)e.getWhoClicked();
+	public void inv(InventoryClickEvent e) {		
+		Inventory i = e.getInventory();
 		ItemStack clicked = e.getCurrentItem();
+		Player p = (Player)e.getWhoClicked();
 		
-		e.setCancelled(true);
+		if(i.getName().equals(pr.getName())) e.setCancelled(true);
+		
+		if(clicked.getItemMeta().getDisplayName().equals("§aCase")) {
+			p.getInventory().addItem(Main.prcase);
+		}
 	}
 
 }
